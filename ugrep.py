@@ -32,7 +32,7 @@ def find_activity(nick):
 
     record_date = datetime.datetime.fromtimestamp(record['set_date'])
     last_saw = timesince(record_date)
-    return 'last saw {nick} {ago} on channel: {channel}'.format(
+    return 'last saw {nick} {ago} ago on channel: {channel}'.format(
         nick=nick, channel=record['channel'], ago=last_saw)
 
 
@@ -45,7 +45,7 @@ def ugrep(client, channel, nick, message, *args):
             return channel, nick, ''
 
     if len(args) == 2:
-        return channel, nick, find_activity(args[-1][0])
+        return find_activity(args[-1][0])
 
     # Anything else is a match
     else:
