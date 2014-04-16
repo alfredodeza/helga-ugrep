@@ -3,6 +3,7 @@ import random
 from helga.plugins import match
 from helga.db import db
 from helga import log, settings
+from helga.plugins import command, match
 
 logger = log.getLogger(__name__)
 
