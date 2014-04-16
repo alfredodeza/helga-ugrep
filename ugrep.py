@@ -39,7 +39,7 @@ def find_activity(nick):
 #@match(r'(.*)', priority=50)
 def ugrep(client, channel, nick, message, *args):
     if len(args) == 0:
-        is_asking = bool(re.findall(r'(ugrep)\s+{0}$'.format(client.nickname)))
+        is_asking = bool(re.findall(r'(ugrep)\s+{0}$'.format(client.nickname), message))
 
         if is_asking:
             return channel, nick, message
