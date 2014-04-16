@@ -1,5 +1,6 @@
 import re
 import random
+import time
 from helga.plugins import match
 from helga.db import db
 from helga import log, settings
@@ -42,7 +43,7 @@ def find_activity(nick):
 
 
 @command('ugrep', help="grep for a user's last activity. Usage: <botnick> ugrep nick")
-@match(r'^(.*)\?$')  # Capture every line
+@match(r'(.*)', priority=50)  # Capture every line
 def ugrep(client, channel, nick, message, *args):
     if len(args) == 2:
         return find_activity(args[-1][0])
