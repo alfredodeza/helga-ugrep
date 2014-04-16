@@ -33,8 +33,9 @@ def find_activity(nick):
     return 'last saw {nick} on channel: {chan} at {date}'.format(
             nick=nick, channel=record['channel'], date=record['set_date'])
 
-@preprocessor(priority=50)
+    #@preprocessor(priority=50) I can't make it with this decorator :(
 @command('ugrep', help="grep for a user's last activity. Usage: <botnick> ugrep nick")
+@match(r'(.*)', priority=50)
 def ugrep(client, channel, nick, message, *args):
     if len(args) == 2:
         return find_activity(args[-1][0])
