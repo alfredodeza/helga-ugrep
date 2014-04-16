@@ -45,7 +45,7 @@ def ugrep(client, channel, nick, message, *args):
             return channel, nick, ''
 
     if len(args) == 2:
-        find_activity(args[-1][0])
+        return channel, nick, find_activity(args[-1][0])
 
     # Anything else is a match
     else:
