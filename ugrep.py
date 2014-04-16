@@ -14,6 +14,7 @@ def store_nick_activity(channel, nick):
     Records a new fact with a given term. Optionally can set an author
     """
     logger.info('Adding new nick activity {0}: {1}'.format(nick, channel))
+    db.ugrep.remove({'nick': nick})
 
     #if not db.facts.find({'term': term_regex(term)}).count():
     db.ugrep.insert({
@@ -30,15 +31,21 @@ def find_activity(nick):
     if record is None:
         return 'hrmnnn have not seen {nick} around at all'.format(nick=nick)
 
-    return 'last saw {nick} on channel: {chan} at {date}'.format(
+    return 'last saw {nick} on channel: {channel} at {date}'.format(
             nick=nick, channel=record['channel'], date=record['set_date'])
 
-    #@preprocessor(priority=50) I can't make it with this decorator :(
+@preprocessor(priority=50)
 @command('ugrep', help="grep for a user's last activity. Usage: <botnick> ugrep nick")
-@match(r'(.*)', priority=50)
+#@match(r'(.*)', priority=50)
 def ugrep(client, channel, nick, message, *args):
+    if len(args) == 0:
+        is_asking = bool(re.findall(r'(ugrep)\s+{0}$'.format(client.nickname)))
+
+        if is asking
+            return channel, nick, message
+
     if len(args) == 2:
         return find_activity(args[-1][0])
 
     # Anything else is a match
-    store_nick_activity(channel, nick)
+    return store_nick_activity(channel, nick)
