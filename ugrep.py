@@ -30,16 +30,8 @@ def find_activity(nick):
     if record is None:
         return 'hrmnnn have not seen {nick} around at all'.format(nick=nick)
 
-    return 'last saw {nick} on {date}'.format(nick=nick, date=record['set_date'])
-    # Otherwise, do normal formatting
-    #tz = getattr(settings, 'TIMEZONE', 'US/Eastern')
-    #try:
-    #    timestamp = datetime.fromtimestamp(record['set_date'], tz=pytz.timezone(tz))
-    #except TypeError:
-    #    timestamp = record['set_date'].replace(tzinfo=pytz.timezone(tz))
-    #record['fmt_dt'] = datetime.strftime(timestamp, '%m/%d/%Y %I:%M%p')
-
-    #return '{fact} ({set_by} on {fmt_dt})'.format(**record)
+    return 'last saw {nick} on channel: {chan} at {date}'.format(
+            nick=nick, channel=record['channel'], date=record['set_date'])
 
 
 @command('ugrep', help="grep for a user's last activity. Usage: <botnick> ugrep nick")
