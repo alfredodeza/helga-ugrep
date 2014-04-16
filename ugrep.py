@@ -15,16 +15,16 @@ def store_nick_activity(channel, nick):
     logger.info('Adding new nick activity {0}: {1}'.format(nick, channel))
 
     #if not db.facts.find({'term': term_regex(term)}).count():
-    db.facts.insert({
+    db.ugrep.insert({
         'nick': nick,
         'channel': channel,
         'set_date': time.time()
     })
-    db.facts.ensure_index('nick')
+    db.ugrep.ensure_index('nick')
 
 
 def find_activity(nick):
-    record = db.facts.find_one({'nick': nick})
+    record = db.ugrep.find_one({'nick': nick})
 
     if record is None:
         return 'hrmnnn have not seen {nick} around at all'.format(nick=nick)
