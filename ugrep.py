@@ -44,7 +44,7 @@ def find_activity(nick):
 @match(r'^(.*)\?$')  # Capture every line
 def ugrep(client, channel, nick, message, *args):
     if len(args) == 2:
-        return facts_command(client, channel, nick, message, *args)
+        return find_activity(client, channel, nick, message, *args)
 
     # Anything else is a match
     store_nick_activity(channel, nick)
