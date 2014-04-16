@@ -33,8 +33,7 @@ def find_activity(nick):
     return 'last saw {nick} on channel: {chan} at {date}'.format(
             nick=nick, channel=record['channel'], date=record['set_date'])
 
-
-@preprocessor
+@preprocessor(priority=50)
 @command('ugrep', help="grep for a user's last activity. Usage: <botnick> ugrep nick")
 def ugrep(client, channel, nick, message, *args):
     if len(args) == 2:
