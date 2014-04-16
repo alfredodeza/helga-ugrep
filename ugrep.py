@@ -41,7 +41,7 @@ def ugrep(client, channel, nick, message, *args):
     if len(args) == 0:
         is_asking = bool(re.findall(r'(ugrep)\s+{0}$'.format(client.nickname)))
 
-        if is asking
+        if is asking:
             return channel, nick, message
 
     if len(args) == 2:
